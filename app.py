@@ -1,10 +1,16 @@
-from flask import Flask, render_template, request
+import os
 import requests
+from flask import Flask, render_template, request
+from dotenv import load_dotenv
 from datetime import datetime, timedelta
+
+# Load environment variables from the .env file
+load_dotenv()
 
 app = Flask(__name__)
 
-API_KEY = "1dd3d77bda7343d59e448a2a51814b12"  # Use your NewsAPI key
+# Get API key from environment variable
+API_KEY = os.getenv("NEWS_API_KEY")
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
